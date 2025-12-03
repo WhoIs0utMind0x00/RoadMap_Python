@@ -123,3 +123,4 @@ print(bin(a))  # Imprime 0b1010
 a = 0b001100
 a <<= 2  # Recorre los bits 2 posiciones a la izquierda (0b001100 -> 0b110000)
 print(bin(a))  # Imprime 0b110000
+
