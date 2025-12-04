@@ -23,27 +23,3 @@ while contador < 11:
 frutas = ['Manzana', 'Pera', 'Uva', 'Sandía']
 for fruta in frutas:
     print(fruta)
-
-all_num = input('Presiona "y" para mostrar los números del 10 - 55: ')
-if all_num == "y":
-    print("Todos los números")
-    for n in range(10, 56):
-        print(n)
-
-num_impar = input('Presiona "y" para mostrar los números impares en el rango 10 - 55: ')
-if num_impar == "y":
-    for n in range(10, 56):
-        if n % 2 != 0:
-            print(f"Número impar: {n}")
-
-num_par = input('Presiona "y" para mostrar los números pares en el rango 10 - 55: ')
-if num_par == "y":
-    for n in range(10, 56):
-        if n % 2 == 0:
-            print(f"Número par: {n}")
-
-mult_tres = input('Presiona "y" para mostrar los múltiplos de 3 en el rango 10 - 55: ')
-if mult_tres == "y":
-    for n in range(10, 56):
-        if n % 3 == 0:
-            print(f"Múltiplo de 3: {n}")
