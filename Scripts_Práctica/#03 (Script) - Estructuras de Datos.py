@@ -7,12 +7,15 @@
 # * - El programa no puede dejar introducir números de teléfono no numéricos y con más
 # *   de 11 dígitos (o el número de dígitos que quieras).
 # * - También se debe proponer una operación de finalización del programa.
+
+# Diccionario nombre(str):teléfono(int)
 agenda = {"Contacto 1": 5512345678, "Contacto 2": 5523456781, "Contacto 3": 5556781234, "Contacto 4": 5513572468, "Contacto 5": 5534127856}
+MAXIMO_DIGITOS = 10
 
 # Menú principal
 def seleccionar_opcion():
     print("==Menú principal==")
-    print("> 1. Buscar contacto \n> 2. Agregar contacto\n> 3. Modificar contacto \n> 4. Eliminar contacto\n> 5. Ver contactos")
+    print("> 1. Buscar contacto \n> 2. Agregar contacto\n> 3. Modificar contacto \n> 4. Eliminar contacto\n> 5. Ver contactos\n> 6. Salir del programa")
     opcion_seleccionada = int(input("Seleccione una opción: "))
     match opcion_seleccionada:
         case 1:
@@ -27,7 +30,6 @@ def seleccionar_opcion():
             consultar_contactos()
         case 6:
             salir_programa()
-
 
 # Opción 1 -> Buscar contacto
 def buscar_contacto():
@@ -44,7 +46,7 @@ def agregar_contacto():
     print("== Agregar nuevo contacto == \n")
     nombre_contacto = input("Nombre de contacto: ")
     tel_contacto = input("Número de teléfono (10 dígitos): ")
-    if len(tel_contacto) == 10:
+    if len(tel_contacto) == MAXIMO_DIGITOS and tel_contacto.isdigit():
         int(tel_contacto)
         agenda[nombre_contacto] = tel_contacto
         print("Contacto agregado\n")
@@ -59,7 +61,7 @@ def modificar_contacto():
     if busqueda in agenda.keys():
         print(f"Número actual: {agenda[busqueda]}")
         nuevo_numero = input("Nuevo número (10 dígitos): ")
-        if len(nuevo_numero) == 10:
+        if len(nuevo_numero) == MAXIMO_DIGITOS and nuevo_numero.isdigit():
             int(nuevo_numero)
             agenda[busqueda] = nuevo_numero
             print("Contacto actualizado")
@@ -71,9 +73,9 @@ def eliminar_contacto():
     print(" == Eliminar contacto ==\n")
     busqueda = input("Nombre del contacto que desea eliminar: ")
     if busqueda in agenda.keys():
-        confirmacion = input(f"¿Desea eliminar el contacto {busqueda}? (y/n):")
+        confirmacion = input(f"¿Desea eliminar {busqueda} de la agenda? (y/n):")
         if confirmacion.lower() != "y":
-            eliminar_contacto()
+            no_eliminar_menu()
         else:
             del agenda[busqueda]
             print("Contacto eliminado")
@@ -84,7 +86,8 @@ def eliminar_contacto():
 # Opción 5 -> Ver contactos
 def consultar_contactos():
     print(" == Lista de contactos ==\n")
-    print(agenda)
+    for nombre, tel in agenda.items():
+        print(f"{nombre}: {tel}")
     consultar_menu()
 
 # Opción 6 -> Salir del programa
@@ -95,7 +98,6 @@ def salir_programa():
     else:
         exit()
 
- 
 
 # Menús dentro de funciones
 
@@ -114,7 +116,7 @@ def buscar_menu():
 # Menú dentro de "Buscar contacto"
 def buscar_menu_error():
     print("Contacto no encontrado:(\n")
-    print("\n> 1. Intentar de nuevo\n> 2. Volver al menú\n>3. Salir del programa")
+    print("\n> 1. Intentar de nuevo\n> 2. Volver al menú\n> 3. Salir del programa")
     respuesta = int(input("Seleccione una opción: "))
     match respuesta:
         case 1:
@@ -138,7 +140,7 @@ def agregar_menu():
 # Menú dentro de "Agregar contacto"
 def agregar_menu_error():
     print("Número inválido\n")
-    print("\n> 1. Intentar de nuevo\n> 2. Volver al menú\n>3. Salir del programa")
+    print("\n> 1. Intentar de nuevo\n> 2. Volver al menú\n> 3. Salir del programa")
     respuesta = int(input("Seleccione una opción: "))
     match respuesta:
         case 1:
@@ -161,7 +163,7 @@ def modificar_menu():
 # Menú dentro de "Modificar contacto"
 def modificar_menu_error():
     print("Número inválido\n")
-    print("\n> 1. Intentar de nuevo\n> 2. Volver al menú\n>3. Salir del programa")
+    print("\n> 1. Intentar de nuevo\n> 2. Volver al menú\n> 3. Salir del programa")
     respuesta = int(input("Seleccione una opción: "))
     match respuesta:
         case 1:
@@ -185,7 +187,7 @@ def eliminar_menu():
 # Menú dentro de "Eliminar contacto"
 def eliminar_menu_error():
     print("Contacto no encontrado\n")
-    print("\n> 1. Intentar de nuevo\n> 2. Volver al menú\n>3. Salir del programa")
+    print("\n> 1. Intentar de nuevo\n> 2. Volver al menú\n> 3. Salir del programa")
     respuesta = int(input("Seleccione una opción: "))
     match respuesta:
         case 1:
@@ -194,10 +196,20 @@ def eliminar_menu_error():
             seleccionar_opcion()
         case 3:
             salir_programa()
-
+def no_eliminar_menu():
+    print("No se eliminó ningún contacto")
+    print("\n> 1. Intentar de nuevo\n> 2. Volver al menú\n> 3. Salir del programa")
+    respuesta = int(input("Seleccione una opción: "))
+    match respuesta:
+        case 1:
+            eliminar_contacto()
+        case 2:
+            seleccionar_opcion()
+        case 3:
+            salir_programa()
 # Menú dentro de "Consultar contactos"
 def consultar_menu():
-    print(">1. Buscar contacto\n> 2. Agregar contacto\n> 3. Modificar contacto\n> 4. Eliminar Contacto\n> 5. Volver al menú principal\n> 6. Salir del programa")
+    print("> 1. Buscar contacto\n> 2. Agregar contacto\n> 3. Modificar contacto\n> 4. Eliminar Contacto\n> 5. Volver al menú principal\n> 6. Salir del programa")
     respuesta = int(input("Seleccione una opción: "))
     match respuesta:
         case 1:
