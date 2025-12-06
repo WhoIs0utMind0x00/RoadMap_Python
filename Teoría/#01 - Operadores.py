@@ -1,3 +1,5 @@
+# ->> Operadores <<-
+
 # 1 --> Crea ejemplos utilizando todos los tipos de operadores de tu lenguaje: Aritméticos, lógicos, de comparación, asignación, identidad, pertenencia, bits
 # ->> Aritméticos
 print("\nAritméticos")

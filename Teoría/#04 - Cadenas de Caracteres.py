@@ -1,3 +1,5 @@
+# ->> Operaciones con Cadenas de Caracteres <<-
+
 # OPERADORES BÁSICOS
 # Concatenación -> Unir dos o más cadenas usando el operador [+]
 concatenacion = "Texto" + " " + "concatenado"

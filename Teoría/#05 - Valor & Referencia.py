@@ -1,3 +1,5 @@
+# ->> Paso por valor y paso por referencia en parámetros <<-
+
 # Muestra ejemplos de asignación de variables "por valor" y "por referencia", según su tipo de dato
 # Muestra ejemplos de funciones con variables que se les pasan "por valor" y "por referencia", y como se comportan en cada caso en el momento de ser modificados
 
